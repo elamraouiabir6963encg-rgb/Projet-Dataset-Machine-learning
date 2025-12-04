@@ -197,7 +197,7 @@ min       -1.000000      0.000000
 max      871.000000    275.000000  
 
 --- HISTOGRAMMES ---
-![Distribution de Age]("C:\Users\hp\Desktop\Distribution de Age.png")
+
 📌 Interprétation - age :
 - La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
 - Une asymétrie indique une concentration des valeurs vers une borne.
