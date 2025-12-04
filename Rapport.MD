@@ -146,8 +146,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 ---
 
 # 4.3 Histogrammes – Distributions
-
-
+![Distrtibution de Age](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
 ### Age
 
 📌 Population concentrée entre 30 et 50 ans.
