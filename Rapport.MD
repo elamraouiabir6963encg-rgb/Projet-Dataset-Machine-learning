@@ -1,5 +1,5 @@
 # 📘 Rapport d'Analyse - DATASET BANK MARKETING
-1. INTRODUCTION
+## 1. INTRODUCTION
 1.1 Contexte
 
 Dans le cadre de campagnes marketing bancaires, les institutions financières cherchent à optimiser la probabilité de souscription à un produit (ici, un dépôt à terme) tout en limitant les coûts de prospection. L’essor de la Data Science permet aujourd’hui d’analyser de grandes bases de données clients afin de prédire avec plus de précision le comportement des prospects.
@@ -27,7 +27,7 @@ Construire un modèle prédictif fiable
 
 Évaluer ses performances de manière rigoureuse
 
-2. MÉTHODOLOGIE
+## 2. METHODOLOGIE
 2.1 Préparation et nettoyage des données
 
 Les étapes de nettoyage ont été motivées par des préoccupations statistiques et pratiques :
@@ -83,7 +83,7 @@ RMSE (sur les probabilités)
 
 Ces indicateurs garantissent une évaluation équilibrée même en cas de déséquilibre des classes.
 
-3. RÉSULTATS ET DISCUSSION
+## 3. RESULTATS ET DISCUSSION
 3.1 Résultats globaux du modèle (exemple)
 Indicateur	Valeur
 Accuracy	0.89
@@ -145,7 +145,7 @@ Certains clients atypiques mal prédits
 
 La durée de l’appel n’est connue qu’après l’appel (biais d’utilisation)
 
-4. CONCLUSION
+## 4. CONCLUSION
 4.1 Bilan
 
 Le modèle développé permet de :
