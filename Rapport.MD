@@ -1,3 +1,6 @@
+# EL Amraoui Abir ENCG SETTAT Finance G2
+![Abir](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
+
 # 🏦 Analyse Exploratoire et Modélisation Prédictive  
 ## Dataset Bank Marketing (UCI)
 
@@ -115,30 +118,68 @@ df['total_contacts'] = df['campaign'] + df['previous']
 ---
 
 ## 4.1 Aperçu des données
+   age           job  marital  education default  balance housing loan  \
+0   58    management  married   tertiary      no     2143     yes   no   
+1   44    technician   single  secondary      no       29     yes   no   
+2   33  entrepreneur  married  secondary      no        2     yes  yes   
+3   47   blue-collar  married        NaN      no     1506     yes   no   
+4   33           NaN   single        NaN      no        1      no   no   
 
-```text
-Nombre d'observations : 45 211  
-Nombre de variables : 17  
-```
+  contact  day_of_week month  duration  campaign  pdays  previous poutcome   y  
+0     NaN            5   may       261         1     -1         0      NaN  no  
+1     NaN            5   may       151         1     -1         0      NaN  no  
+2     NaN            5   may        76         1     -1         0      NaN  no  
+3     NaN            5   may        92         1     -1         0      NaN  no  
+4     NaN            5   may       198         1     -1         0      NaN  no  
 
-Valeurs manquantes importantes :
+✅ Informations générales :
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 45211 entries, 0 to 45210
+Data columns (total 17 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   age          45211 non-null  int64 
+ 1   job          44923 non-null  object
+ 2   marital      45211 non-null  object
+ 3   education    43354 non-null  object
+ 4   default      45211 non-null  object
+ 5   balance      45211 non-null  int64 
+ 6   housing      45211 non-null  object
+ 7   loan         45211 non-null  object
+ 8   contact      32191 non-null  object
+ 9   day_of_week  45211 non-null  int64 
+ 10  month        45211 non-null  object
+ 11  duration     45211 non-null  int64 
+ 12  campaign     45211 non-null  int64 
+ 13  pdays        45211 non-null  int64 
+ 14  previous     45211 non-null  int64 
+ 15  poutcome     8252 non-null   object
+ 16  y            45211 non-null  object
+dtypes: int64(7), object(10)
+memory usage: 5.9+ MB
+None
 
-* contact : 13 020
-* poutcome : 36 959
-
-📌 **Interprétation :**
-Certaines variables sont peu exploitables sans imputation.
-
----
 
 ## 4.2 Statistiques descriptives
+              age        balance   day_of_week      duration      campaign  \
+count  45211.000000   45211.000000  45211.000000  45211.000000  45211.000000   
+mean      40.936210    1362.272058     15.806419    258.163080      2.763841   
+std       10.618762    3044.765829      8.322476    257.527812      3.098021   
+min       18.000000   -8019.000000      1.000000      0.000000      1.000000   
+25%       33.000000      72.000000      8.000000    103.000000      1.000000   
+50%       39.000000     448.000000     16.000000    180.000000      2.000000   
+75%       48.000000    1428.000000     21.000000    319.000000      3.000000   
+max       95.000000  102127.000000     31.000000   4918.000000     63.000000   
 
-| Variable | Moyenne | Min    | Max     |
-| -------- | ------- | ------ | ------- |
-| age      | 40.9    | 18     | 95      |
-| balance  | 1 362 € | -8 019 | 102 127 |
-| duration | 258 sec | 0      | 4918    |
-| campaign | 2.76    | 1      | 63      |
+              pdays      previous  
+count  45211.000000  45211.000000  
+mean      40.197828      0.580323  
+std      100.128746      2.303441  
+min       -1.000000      0.000000  
+25%       -1.000000      0.000000  
+50%       -1.000000      0.000000  
+75%       -1.000000      0.000000  
+max      871.000000    275.000000  
 
 📌
 Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
@@ -146,87 +187,159 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 ---
 
 # 4.3 Histogrammes – Distributions
-![Distrtibution de Age](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20Age.png?raw=true)
+
 ### Age
+![Distrtibution de Age](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20Age.png?raw=true)
 
-📌 Population concentrée entre 30 et 50 ans.
+📌 Interprétation - age :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
 
----
 
 ### Balance
+![Distribbution de Balance](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20Balance.png?raw=true)
+📌 Interprétation - balance :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
 
-📌 Distribution très asymétrique → présence de clients très riches.
+### Day of week
+![Distribbution de pdays_of_week](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20day_of_week.png?raw=true)
 
----
+📌 Interprétation - day_of_week :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
 
 ### Duration
+![Distribbution de duration](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20duration.png?raw=true)
 
-📌 Majorité d’appels courts, rares appels très longs.
-
----
+📌 Interprétation - duration :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
 
 ### Campaign
+![Distribbution de campaign](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20campaign.png?raw=true)
 
-📌 Pression marketing généralement faible, mais certains clients subissent de nombreuses tentatives.
+📌 Interprétation - campaign :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
+
+### Pdays
+![Distribbution de pdays](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20pdays.png?raw=true)
+
+📌 Interprétation - pdays :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
+
+### Previous
+![Distribbution de previous](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20previous.png?raw=true)
+
+📌 Interprétation - previous :
+- La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
+- Une asymétrie indique une concentration des valeurs vers une borne.
+- La présence de pics suggère des groupes de clients distincts.
 
 ---
 
-### Pdays & Previous
+# 4.4 BOXPLOTS 
 
-📌 La majorité n’a jamais été contactée auparavant.
+### Age
+![Boxplot de age](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20age.png?raw=true)
 
----
+📌 Interprétation - age :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
 
-# 4.4 BOXPLOTS – Valeurs aberrantes
+### Balance
+![Boxplot de Balance](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20Balance.png?raw=true)
+📌 Interprétation - balance :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
 
-| Variable | Observation                     |
-| -------- | ------------------------------- |
-| Balance  | Outliers majeurs                |
-| Duration | Extrêmes importants             |
-| Campaign | Valeurs atypiques > 40          |
-| Pdays    | Distribution très déséquilibrée |
+### Day of week
+![Boxplot de day_of_week](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20day%20of%20week.png?raw=true)
 
----
+📌 Interprétation - day_of_week :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
+
+### Duration
+![Boxplot de duration](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20duration.png?raw=true)
+
+📌 Interprétation - duration :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
+
+### Campaign
+![Boxplot de campaign](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20campaign.png?raw=true)
+
+📌 Interprétation - campaign :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
+
+### Pdays
+![Boxplot de pdays](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20pdays.png?raw=true)
+
+📌 Interprétation - pdays :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
+
+### Previous
+![Boxplot de previous](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20previous.png?raw=true)
+
+📌 Interprétation - previous :
+- Les points isolés représentent des valeurs aberrantes (outliers).
+- Une boîte large indique une forte dispersion.
+- Une asymétrie de la boîte suggère une distribution biaisée.
 
 # 4.5 HEATMAP – Corrélations
+![Matrice de corrélation](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Matrice%20de%20corr%C3%A9lation.png?raw=true)
 
-📌 Résultats :
+📌 Interprétation globale des corrélations :
+- Une corrélation proche de 1 ou -1 indique une relation forte.
+- Une valeur proche de 0 indique une indépendance.
+- Les relations fortes peuvent indiquer une redondance de variables.
+- Utile pour la sélection des variables dans les modèles prédictifs.
 
-* Corrélation forte : `duration` et `y`
-* Autres relations faibles
-* Peu de multicolinéarité
+--- FEATURE ENGINEERING ---
+✅ Nouvelles variables créées :
+  age_group  duration_min  total_contacts
+0    Senior      4.350000               1
+1    Adulte      2.516667               1
+2    Adulte      1.266667               1
+3    Senior      1.533333               1
+4    Adulte      3.300000               1
 
-⚠️ `duration` crée un biais car connue après l’appel.
-
----
-
-# 4.6 FEATURE ENGINEERING
-
----
-
-## Variables créées
-
-| Variable       | Intérêt                    |
-| -------------- | -------------------------- |
-| age_group      | Segmentation client        |
-| duration_min   | Interprétabilité           |
-| total_contacts | Pression marketing globale |
-
----
-
-## Interprétations graphiques
+📌 Interprétation des nouvelles variables :
+- age_group : segmentation client plus claire.
+- duration_min : plus interprétable que les secondes.
+- total_contacts : estimation de la pression commerciale sur le client.
 
 ### Répartition par âge
+![Répartition par groupe d'âge](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/R%C3%A9partition%20par%20groupe%20d'%C3%A2ge.png?raw=true)
 
-📌 Population majoritairement adulte.
+📌 Interprétation : Les adultes dominent le portefeuille clients.
 
 ### Durée (minutes)
+![Distribution de la durée de contact](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20la%20dur%C3%A9e%20de%20contact.png?raw=true)
 
-📌 Appels longs rares mais très informatifs.
+📌 Interprétation : Les appels courts dominent — peu d’appels longs très influents.
 
 ### Total contacts
+![Distribution du nobre total de contacts](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20du%20nombre%20total%20de%20contacts.png?raw=true)
 
-📌 Ciblage marketing relativement précis.
+📌 Interprétation : La majorité des clients est contactée peu de fois, signe de ciblage sélectif.
 
 ---
 
