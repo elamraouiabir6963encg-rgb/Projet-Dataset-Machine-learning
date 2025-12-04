@@ -1,12 +1,12 @@
 # 📘 Rapport d'Analyse - DATASET BANK MARKETING
 ## 1. INTRODUCTION
-1.1 Contexte
+### 1.1 Contexte
 
 Dans le cadre de campagnes marketing bancaires, les institutions financières cherchent à optimiser la probabilité de souscription à un produit (ici, un dépôt à terme) tout en limitant les coûts de prospection. L’essor de la Data Science permet aujourd’hui d’analyser de grandes bases de données clients afin de prédire avec plus de précision le comportement des prospects.
 
 Le jeu de données utilisé provient de la base UCI Machine Learning Repository (Bank Marketing Dataset), et recense les caractéristiques socio-professionnelles et comportementales de milliers de clients contactés par des campagnes téléphoniques.
 
-1.2 Problématique
+### 1.2 Problématique
 
 Peut-on prédire efficacement si un client va souscrire à un dépôt à terme bancaire à partir de ses caractéristiques socio-économiques et historiques de contact ?
 
@@ -15,7 +15,7 @@ Cette problématique répond à un enjeu stratégique majeur :
 ✅ Budget marketing limité
 ✅ Optimisation du ciblage commercial
 
-1.3 Objectifs de l’étude
+### 1.3 Objectifs de l’étude
 
 L’étude poursuit trois objectifs principaux :
 
@@ -28,7 +28,7 @@ Construire un modèle prédictif fiable
 Évaluer ses performances de manière rigoureuse
 
 ## 2. METHODOLOGIE
-2.1 Préparation et nettoyage des données
+### 2.1 Préparation et nettoyage des données
 
 Les étapes de nettoyage ont été motivées par des préoccupations statistiques et pratiques :
 
@@ -46,7 +46,7 @@ total_contacts : pression commerciale cumulée
 
 duration_min : temps d’appel simplifié
 
-2.2 Choix de l’algorithme
+### 2.2 Choix de l’algorithme
 
 Un modèle de classification supervisée a été adopté puisque la variable cible est binaire (souscription : oui / non).
 
@@ -84,7 +84,7 @@ RMSE (sur les probabilités)
 Ces indicateurs garantissent une évaluation équilibrée même en cas de déséquilibre des classes.
 
 ## 3. RESULTATS ET DISCUSSION
-3.1 Résultats globaux du modèle (exemple)
+### 3.1 Résultats globaux du modèle (exemple)
 Indicateur	Valeur
 Accuracy	0.89
 F1-Score	0.74
@@ -93,7 +93,7 @@ RMSE	0.31
 
 ⚠️ Remplace les valeurs selon celles que tu as obtenues en exécutant ton code.
 
-3.2 Analyse de la matrice de confusion
+### 3.2 Analyse de la matrice de confusion
 	Prédit NON	Prédit OUI
 Réel NON	Haute valeur – bon rejet	
 Réel OUI	Erreurs marginales	
@@ -108,7 +108,7 @@ Certains clients intéressés sont mal classés → opportunités commerciales r
 
 L’équilibre rappel/précision reste acceptable.
 
-3.3 Interprétation des variables clés
+### 3.3 Interprétation des variables clés
 
 Les variables les plus influentes sont :
 
@@ -127,7 +127,7 @@ Trop d’appels réduit la probabilité (harcèlement perçu)
 
 Un client déjà contacté récemment est plus favorable
 
-3.4 Discussion critique
+### 3.4 Discussion critique
 
 ✅ Points forts :
 
@@ -146,7 +146,7 @@ Certains clients atypiques mal prédits
 La durée de l’appel n’est connue qu’après l’appel (biais d’utilisation)
 
 ## 4. CONCLUSION
-4.1 Bilan
+### 4.1 Bilan
 
 Le modèle développé permet de :
 
@@ -155,7 +155,7 @@ Le modèle développé permet de :
 ✅ Réduire les coûts
 ✅ Améliorer le taux de conversion
 
-4.2 Limites
+### 4.2 Limites
 
 Dépendance forte à la variable durée
 
@@ -165,7 +165,7 @@ Hypothèses linéaires (si régression logistique utilisée)
 
 Données anciennes (non temps réel)
 
-4.3 Pistes d’amélioration
+### 4.3 Pistes d’amélioration
 
 🚀 Perspectives :
 
