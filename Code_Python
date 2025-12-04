@@ -197,7 +197,7 @@ min       -1.000000      0.000000
 max      871.000000    275.000000  
 
 --- HISTOGRAMMES ---
-https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/a179ac13ce12daef4e658f01f1a88c73e48392d3/Image/Distribution%20de%20Age.png
+![Distribution de Age]("C:\Users\hp\Desktop\Distribution de Age.png")
 📌 Interprétation - age :
 - La distribution permet d’observer la forme générale (symétrique, asymétrique, extrêmes).
 - Une asymétrie indique une concentration des valeurs vers une borne.
