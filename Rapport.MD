@@ -1,9 +1,3 @@
-Voici ton **rapport complet regroupé sous un seul document Markdown**, prêt à être exporté en PDF ou rendu académique.
-Tu peux copier-coller tel quel dans un fichier `rapport_bank_marketing.md`.
-
----
-
-````markdown
 # 🏦 Analyse Exploratoire et Modélisation Prédictive  
 ## Dataset Bank Marketing (UCI)
 
@@ -153,7 +147,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 # 4.3 Histogrammes – Distributions
 
----
+"C:\Users\hp\Desktop\Distribution de Age.png" 
 
 ### Age
 
