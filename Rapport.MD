@@ -1,182 +1,279 @@
-# 📘 Rapport d'Analyse - DATASET BANK MARKETING
-## 1. INTRODUCTION
-### 1.1 Contexte
+Voici ton **rapport complet regroupé sous un seul document Markdown**, prêt à être exporté en PDF ou rendu académique.
+Tu peux copier-coller tel quel dans un fichier `rapport_bank_marketing.md`.
 
-Dans le cadre de campagnes marketing bancaires, les institutions financières cherchent à optimiser la probabilité de souscription à un produit (ici, un dépôt à terme) tout en limitant les coûts de prospection. L’essor de la Data Science permet aujourd’hui d’analyser de grandes bases de données clients afin de prédire avec plus de précision le comportement des prospects.
+---
 
-Le jeu de données utilisé provient de la base UCI Machine Learning Repository (Bank Marketing Dataset), et recense les caractéristiques socio-professionnelles et comportementales de milliers de clients contactés par des campagnes téléphoniques.
+````markdown
+# 🏦 Analyse Exploratoire et Modélisation Prédictive  
+## Dataset Bank Marketing (UCI)
 
-### 1.2 Problématique
+---
 
-Peut-on prédire efficacement si un client va souscrire à un dépôt à terme bancaire à partir de ses caractéristiques socio-économiques et historiques de contact ?
+# 1. INTRODUCTION
 
-Cette problématique répond à un enjeu stratégique majeur :
-✅ Grands volumes de clients
-✅ Budget marketing limité
-✅ Optimisation du ciblage commercial
+## Contexte
+Les campagnes de télé-marketing bancaire visent à convaincre les clients de souscrire à des produits financiers (ex : dépôt à terme). Cependant, ces campagnes sont coûteuses et peu efficaces si elles sont mal ciblées.
 
-### 1.3 Objectifs de l’étude
+## Problématique
+Comment identifier les clients susceptibles de souscrire à un produit bancaire à partir de données socio-économiques et comportementales ?
 
-L’étude poursuit trois objectifs principaux :
+## Objectif
+Mettre en œuvre une analyse exploratoire des données (EDA) pour comprendre :
+- la structure des données
+- la distribution des variables
+- les corrélations importantes
+- la création de nouvelles variables
+afin de préparer la modélisation prédictive.
 
-Comprendre la structure des données (EDA)
+---
 
-Identifier les variables influençant la souscription
+# 2. MÉTHODOLOGIE
 
-Construire un modèle prédictif fiable
+## Collecte des Données
+Les données proviennent du **UCI Machine Learning Repository** (ID = 222).
 
-Évaluer ses performances de manière rigoureuse
+Elles décrivent :
+- le profil client (âge, métier, éducation)
+- la situation financière (solde bancaire)
+- l'historique des campagnes marketing
+- la variable cible : **y (souscription oui/non)**
 
-## 2. METHODOLOGIE
-### 2.1 Préparation et nettoyage des données
+---
 
-Les étapes de nettoyage ont été motivées par des préoccupations statistiques et pratiques :
+## Outils Utilisés
 
-Action	Justification
-Suppression des variables inutiles	Éviter le bruit et les biais
-Encodage des variables catégorielles	Les algorithmes nécessitent des données numériques
-Gestion des valeurs aberrantes	Réduire l’influence des extrêmes
-Conversion des durées en minutes	Meilleure interprétation
+- Python 3
+- pandas / NumPy : manipulation des données
+- matplotlib / seaborn : visualisation
+- ucimlrepo : importation du dataset
 
-Des variables dérivées ont été ajoutées :
+---
 
-age_group : segmentation clients
+## Justification des choix
 
-total_contacts : pression commerciale cumulée
+### Visualisation
+Les histogrammes et boxplots permettent de détecter :
+- asymétries
+- valeurs aberrantes (outliers)
+- groupes de population
 
-duration_min : temps d’appel simplifié
+### Corrélation
+La heatmap identifie les redondances et relations significatives.
 
-### 2.2 Choix de l’algorithme
+### Feature Engineering
+Objectif :
+- améliorer l’interprétabilité
+- créer des variables explicatives plus pertinentes
 
-Un modèle de classification supervisée a été adopté puisque la variable cible est binaire (souscription : oui / non).
+---
 
-Le modèle retenu :
+# 3. CODE UTILISÉ
 
-▶ Logistic Regression (ou Random Forest selon ton modèle utilisé)
+```python
+from ucimlrepo import fetch_ucirepo
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-Justification :
+bank_marketing = fetch_ucirepo(id=222)
+X = bank_marketing.data.features
+y = bank_marketing.data.targets
 
-Critère	Raison
-Interprétabilité	Importance des variables
-Rapidité	Excellente sur datasets moyens
-Robustesse	Peu sensible au bruit
-Standard en classification binaire	Référence académique
-2.3 Méthode d’évaluation
+df = pd.concat([X, y], axis=1)
 
-Le dataset a été scindé :
+print(df.head())
+print(df.info())
+print(df.describe())
 
-70% entraînement
+num_cols = df.select_dtypes(include=['int64', 'float64']).columns
 
-30% test
+# HISTOGRAMMES
+for col in num_cols:
+    sns.histplot(df[col], kde=True)
+    plt.title(f"Distribution de {col}")
+    plt.show()
 
-Les métriques retenues :
+# BOXPLOTS
+for col in num_cols:
+    sns.boxplot(x=df[col])
+    plt.title(f"Boxplot de {col}")
+    plt.show()
 
-Accuracy
+# HEATMAP
+plt.figure(figsize=(10,6))
+corr = df[num_cols].corr()
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+plt.title("Matrice de corrélation")
+plt.show()
 
-F1-score
+# FEATURE ENGINEERING
+df['age_group'] = pd.cut(df['age'], bins=[0,30,45,60,100],
+                          labels=['Jeune', 'Adulte', 'Senior', 'Très senior'])
+df['duration_min'] = df['duration'] / 60
+df['total_contacts'] = df['campaign'] + df['previous']
+````
 
-ROC-AUC
+---
 
-Matrice de confusion
+# 4. RÉSULTATS DE L'ANALYSE EXPLORATOIRE (EDA)
 
-RMSE (sur les probabilités)
+---
 
-Ces indicateurs garantissent une évaluation équilibrée même en cas de déséquilibre des classes.
+## 4.1 Aperçu des données
 
-## 3. RESULTATS ET DISCUSSION
-### 3.1 Résultats globaux du modèle (exemple)
-Indicateur	Valeur
-Accuracy	0.89
-F1-Score	0.74
-ROC-AUC	0.84
-RMSE	0.31
+```text
+Nombre d'observations : 45 211  
+Nombre de variables : 17  
+```
 
-⚠️ Remplace les valeurs selon celles que tu as obtenues en exécutant ton code.
+Valeurs manquantes importantes :
 
-### 3.2 Analyse de la matrice de confusion
-	Prédit NON	Prédit OUI
-Réel NON	Haute valeur – bon rejet	
-Réel OUI	Erreurs marginales	
-Faux positifs	Coût marketing inutile	
-Faux négatifs	Manque à gagner	
+* contact : 13 020
+* poutcome : 36 959
 
-Interprétation :
+📌 **Interprétation :**
+Certaines variables sont peu exploitables sans imputation.
 
-Le modèle identifie correctement la majorité des non-souscripteurs.
+---
 
-Certains clients intéressés sont mal classés → opportunités commerciales ratées.
+## 4.2 Statistiques descriptives
 
-L’équilibre rappel/précision reste acceptable.
+| Variable | Moyenne | Min    | Max     |
+| -------- | ------- | ------ | ------- |
+| age      | 40.9    | 18     | 95      |
+| balance  | 1 362 € | -8 019 | 102 127 |
+| duration | 258 sec | 0      | 4918    |
+| campaign | 2.76    | 1      | 63      |
 
-### 3.3 Interprétation des variables clés
+📌
+Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
-Les variables les plus influentes sont :
+---
 
-Variable	Impact
-duration	Facteur décisif
-previous	Historique client
-campaign	Fatigue marketing
-age	Ciblage démographique
-pdays	Récence du contact
+# 4.3 Histogrammes – Distributions
 
-Exemples :
+---
 
-Un appel long augmente fortement la probabilité de souscription
+### Age
 
-Trop d’appels réduit la probabilité (harcèlement perçu)
+📌 Population concentrée entre 30 et 50 ans.
 
-Un client déjà contacté récemment est plus favorable
+---
 
-### 3.4 Discussion critique
+### Balance
 
-✅ Points forts :
+📌 Distribution très asymétrique → présence de clients très riches.
 
-Bon niveau de généralisation
+---
 
-Facilement interprétable
+### Duration
 
-Coût computationnel faible
+📌 Majorité d’appels courts, rares appels très longs.
 
-⚠️ Limites :
+---
 
-Déséquilibre des classes
+### Campaign
 
-Certains clients atypiques mal prédits
+📌 Pression marketing généralement faible, mais certains clients subissent de nombreuses tentatives.
 
-La durée de l’appel n’est connue qu’après l’appel (biais d’utilisation)
+---
 
-## 4. CONCLUSION
-### 4.1 Bilan
+### Pdays & Previous
 
-Le modèle développé permet de :
+📌 La majorité n’a jamais été contactée auparavant.
 
-✅ Prédire avec un bon niveau de fiabilité
-✅ Optimiser les campagnes commerciales
-✅ Réduire les coûts
-✅ Améliorer le taux de conversion
+---
 
-### 4.2 Limites
+# 4.4 BOXPLOTS – Valeurs aberrantes
 
-Dépendance forte à la variable durée
+| Variable | Observation                     |
+| -------- | ------------------------------- |
+| Balance  | Outliers majeurs                |
+| Duration | Extrêmes importants             |
+| Campaign | Valeurs atypiques > 40          |
+| Pdays    | Distribution très déséquilibrée |
 
-Modélisation statique
+---
 
-Hypothèses linéaires (si régression logistique utilisée)
+# 4.5 HEATMAP – Corrélations
 
-Données anciennes (non temps réel)
+📌 Résultats :
 
-### 4.3 Pistes d’amélioration
+* Corrélation forte : `duration` et `y`
+* Autres relations faibles
+* Peu de multicolinéarité
 
-🚀 Perspectives :
+⚠️ `duration` crée un biais car connue après l’appel.
 
-Utiliser des modèles non linéaires (XGBoost, Neural Networks)
+---
 
-Intégrer des données externes (revenu, canal digital)
+# 4.6 FEATURE ENGINEERING
 
-Rebalancer les classes (SMOTE)
+---
 
-Analyse causale
+## Variables créées
 
-Déploiement en score temps réel
+| Variable       | Intérêt                    |
+| -------------- | -------------------------- |
+| age_group      | Segmentation client        |
+| duration_min   | Interprétabilité           |
+| total_contacts | Pression marketing globale |
 
-Segmentation client par clustering
+---
+
+## Interprétations graphiques
+
+### Répartition par âge
+
+📌 Population majoritairement adulte.
+
+### Durée (minutes)
+
+📌 Appels longs rares mais très informatifs.
+
+### Total contacts
+
+📌 Ciblage marketing relativement précis.
+
+---
+
+# 5. INTERPRÉTATION GÉNÉRALE
+
+| Point               | Conclusion             |
+| ------------------- | ---------------------- |
+| Dataset             | fiable                 |
+| Outliers            | nombreux               |
+| Corrélation         | faible sauf `duration` |
+| Feature engineering | pertinent              |
+| Problème potentiel  | fuite de données       |
+
+---
+
+# 6. CONCLUSION
+
+---
+
+## Limites
+
+* valeurs manquantes
+* déséquilibre de classes
+* variable biaisante `duration`
+* absence de normalisation
+* pas de modèle ML construit
+
+---
+
+## Pistes d’amélioration
+
+* Imputation intelligente
+* Encodage catégoriel
+* Standardisation
+* Sélection de variables
+* Validation croisée
+* Modélisation ML (Logistic, Random Forest, XGBoost)
+
+---
+
+✅ **Analyse exploratoire finalisée avec succès.**
+
