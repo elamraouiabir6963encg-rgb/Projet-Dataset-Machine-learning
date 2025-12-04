@@ -1,44 +1,4 @@
-# 📘 RAPPORT D’ANALYSE EXPLORATOIRE DES DONNÉES (EDA)
-## Dataset : Bank Marketing — UCI Machine Learning Repository
-
----
-
-# 1. INTRODUCTION
-
-## 1.1 Contexte
-
-Dans un environnement bancaire hautement concurrentiel, les institutions doivent optimiser leurs campagnes marketing afin de cibler efficacement les clients susceptibles de souscrire à des produits financiers. Le dataset **Bank Marketing**, utilisé dans ce projet, contient les données issues de campagnes téléphoniques d'une banque portugaise visant la souscription à des dépôts à terme.
-
----
-
-## 1.2 Problématique
-
-> Comment analyser les données des clients afin d’identifier les facteurs influençant la souscription à un dépôt bancaire ?
-
----
-
-## 1.3 Objectifs
-
-- Comprendre la structure globale des données  
-- Explorer les relations entre variables  
-- Détecter les valeurs aberrantes  
-- Mettre en œuvre du Feature Engineering  
-- Préparer les données pour des modèles prédictifs futurs  
-
----
-
-# 2. MÉTHODOLOGIE
-
----
-
-## 2.1 Chargement et préparation des données
-
-Les données sont importées depuis le dépôt **UCI Machine Learning Repository** grâce à la bibliothèque `ucimlrepo`.  
-Les variables explicatives (X) et la variable cible (y) sont fusionnées dans un unique DataFrame.
-
----
-
-## 2.2 Code utilisé
+## Code utilisé
 
 ```python
 # INSTALLATION & IMPORTS
