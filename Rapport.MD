@@ -147,7 +147,6 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 # 4.3 Histogrammes – Distributions
 
-"C:\Users\hp\Desktop\Distribution de Age.png" 
 
 ### Age
 
