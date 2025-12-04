@@ -1,6 +1,4 @@
-# ===================================================
 # INSTALLATION & IMPORTS
-# ===================================================
 # pip install ucimlrepo seaborn matplotlib pandas numpy
 
 from ucimlrepo import fetch_ucirepo
@@ -9,9 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ===================================================
 # CHARGEMENT DU DATASET
-# ===================================================
 bank_marketing = fetch_ucirepo(id=222)
 
 X = bank_marketing.data.features
@@ -29,14 +25,10 @@ print(df.info())
 print("\n✅ Statistiques descriptives :")
 print(df.describe())
 
-# ===================================================
 # IDENTIFICATION DES VARIABLES NUMÉRIQUES
-# ===================================================
 num_cols = df.select_dtypes(include=['int64', 'float64']).columns
 
-# ===================================================
 # 1) VISUALISATION DES DISTRIBUTIONS : HISTOGRAMMES
-# ===================================================
 print("\n--- HISTOGRAMMES ---")
 
 for col in num_cols:
@@ -50,9 +42,7 @@ for col in num_cols:
     print(f"- Une asymétrie indique une concentration des valeurs vers une borne.")
     print(f"- La présence de pics suggère des groupes de clients distincts.\n")
 
-# ===================================================
 # 2) BOXPLOTS (détection des valeurs aberrantes)
-# ===================================================
 print("\n--- BOXPLOTS ---")
 
 for col in num_cols:
@@ -66,9 +56,7 @@ for col in num_cols:
     print("- Une boîte large indique une forte dispersion.")
     print("- Une asymétrie de la boîte suggère une distribution biaisée.\n")
 
-# ===================================================
 # 3) HEATMAP DES CORRÉLATIONS
-# ===================================================
 print("\n--- HEATMAP DES CORRÉLATIONS ---")
 
 plt.figure(figsize=(10,6))
