@@ -106,7 +106,7 @@ Ici, l’objectif étant l’EDA, la priorité est l’analyse, pas la performan
 ---
 
 ## 5.1 Aperçu des données
-![Aperçu des données](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
+![Aperçu des données](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Aper%C3%A7u%20des%20donn%C3%A9es.png?raw=true)
 
 ## 5.2 Statistiques descriptives
 ![Statistiques descreptives](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
