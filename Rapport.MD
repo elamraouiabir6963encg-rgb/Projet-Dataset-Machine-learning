@@ -10,7 +10,7 @@
 
 ### Le Problème
 Dans le domaine financier, Les campagnes de télé-marketing bancaire visent à convaincre les clients de souscrire à des produits financiers (ex : dépôt à terme). Cependant, ces campagnes sont coûteuses et peu efficaces si elles sont mal ciblées.
-*   **Objectif :** Créer un "Assistant IA" pour le second avis médical.
+*   **Objectif :** Créer un "Assistant IA" pour le ciblage des clients.
 *   **L'Enjeu critique :** La matrice des coûts d'erreur est asymétrique.
     *   Dire à un patient sain qu'il est malade (Faux Positif) génère du stress et des coûts de biopsie.
     *   Dire à un patient malade qu'il est sain (Faux Négatif) peut entraîner la mort par retard de traitement. **L'IA doit donc prioriser la sensibilité (Recall).**
