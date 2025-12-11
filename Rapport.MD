@@ -106,42 +106,10 @@ Ici, l’objectif étant l’EDA, la priorité est l’analyse, pas la performan
 ---
 
 ## 5.1 Aperçu des données
-   age           job  marital  education default  balance housing loan  \
-0   58    management  married   tertiary      no     2143     yes   no   
-1   44    technician   single  secondary      no       29     yes   no   
-2   33  entrepreneur  married  secondary      no        2     yes  yes   
-3   47   blue-collar  married        NaN      no     1506     yes   no   
-4   33           NaN   single        NaN      no        1      no   no   
-
-  contact  day_of_week month  duration  campaign  pdays  previous poutcome   y  
-0     NaN            5   may       261         1     -1         0      NaN  no  
-1     NaN            5   may       151         1     -1         0      NaN  no  
-2     NaN            5   may        76         1     -1         0      NaN  no  
-3     NaN            5   may        92         1     -1         0      NaN  no  
-4     NaN            5   may       198         1     -1         0      NaN  no  
-
+![Aperçu des données](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
 
 ## 5.2 Statistiques descriptives
-              age        balance   day_of_week      duration      campaign  \
-count  45211.000000   45211.000000  45211.000000  45211.000000  45211.000000   
-mean      40.936210    1362.272058     15.806419    258.163080      2.763841   
-std       10.618762    3044.765829      8.322476    257.527812      3.098021   
-min       18.000000   -8019.000000      1.000000      0.000000      1.000000   
-25%       33.000000      72.000000      8.000000    103.000000      1.000000   
-50%       39.000000     448.000000     16.000000    180.000000      2.000000   
-75%       48.000000    1428.000000     21.000000    319.000000      3.000000   
-max       95.000000  102127.000000     31.000000   4918.000000     63.000000   
-
-              pdays      previous  
-count  45211.000000  45211.000000  
-mean      40.197828      0.580323  
-std      100.128746      2.303441  
-min       -1.000000      0.000000  
-25%       -1.000000      0.000000  
-50%       -1.000000      0.000000  
-75%       -1.000000      0.000000  
-max      871.000000    275.000000  
-
+![Statistiques descreptives](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
 📌
 Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
