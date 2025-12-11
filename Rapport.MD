@@ -6,63 +6,27 @@
 
 ---
 
-## Le problème: 
-Les campagnes de télé-marketing bancaire visent à convaincre les clients de souscrire à des produits financiers (ex : dépôt à terme). Cependant, ces campagnes sont coûteuses et peu efficaces si elles sont mal ciblées.
+## 1. Le Contexte Métier et la Mission
 
-## Problématique
-Comment identifier les clients susceptibles de souscrire à un produit bancaire à partir de données socio-économiques et comportementales ?
+### Le Problème (Business Case)
+Les banques utilisent des campagnes de télé‑marketing pour convaincre les clients de souscrire à un dépôt à terme. Or :
+    *   Ces campagnes coûtent cher,
+    *   La majorité des clients ne répondent pas favorablement,
+    *   Un mauvais ciblage = perte d’argent + surcharge des centres d’appels. 
+*   **Objectif :** Créer un "Assistant IA" pour prédire quels clients sont susceptibles de souscrire afin d'optimiser les campagnes.
+*   **L'Enjeu critique :** La matrice des coûts d'erreur est asymétrique.
+    *   Faux Positif: On appelle un client qui ne sera jamais intéressé → perte de temps et coût opérationnel.
+    *   Faux Négatif: on rate un client réellement intéressé → manque à gagner commercial. **L'IA doit donc maximiser le rappel pour ne pas manquer des clients intéressés.**
 
-## Objectif
-Mettre en œuvre une analyse exploratoire des données (EDA) pour comprendre :
-- la structure des données
-- la distribution des variables
-- les corrélations importantes
-- la création de nouvelles variables
-afin de préparer la modélisation prédictive.
-
+### Les Données (L'Input)
+On utilise le *Bank Marketing (UCI)*.
+*   Profil client : âge, métier, éducation…
+*   Situation financière : solde bancaire
+*   Historique marketing : nombre de contacts, résultat des anciennes campagnes…
+*   cible : y = oui/non (a souscrit ou non)
+*   Format : 45 211 observations, 17 colonnes.
 ---
-
-# 2. MÉTHODOLOGIE
-
-## Collecte des Données
-Les données proviennent du **UCI Machine Learning Repository** (ID = 222).
-
-Elles décrivent :
-- le profil client (âge, métier, éducation)
-- la situation financière (solde bancaire)
-- l'historique des campagnes marketing
-- la variable cible : **y (souscription oui/non)**
-
----
-
-## Outils Utilisés
-
-- Python 3
-- pandas / NumPy : manipulation des données
-- matplotlib / seaborn : visualisation
-- ucimlrepo : importation du dataset
-
----
-
-## Justification des choix
-
-### Visualisation
-Les histogrammes et boxplots permettent de détecter :
-- asymétries
-- valeurs aberrantes (outliers)
-- groupes de population
-
-### Corrélation
-La heatmap identifie les redondances et relations significatives.
-
-### Feature Engineering
-Objectif :
-- améliorer l’interprétabilité
-- créer des variables explicatives plus pertinentes
-
----
-
-# 3. CODE UTILISÉ
+## 2. Le Code Python 
 
 ```python
 from ucimlrepo import fetch_ucirepo
@@ -108,14 +72,46 @@ df['age_group'] = pd.cut(df['age'], bins=[0,30,45,60,100],
 df['duration_min'] = df['duration'] / 60
 df['total_contacts'] = df['campaign'] + df['previous']
 ````
+## 3. Analyse Approfondie : Nettoyage 
+
+### Le Problème des données bruts
+Le dataset comporte :
+    *   Des valeurs manquantes (job, education, contact, poutcome),
+    *   Des valeurs extrêmes (ex : balance, duration, previous),
+    *   Des distributions fortement asymétriques. 
+Ces problèmes perturbent les modèles de Machine Learning car :
+    *   Les distributions biaisées trompent les algorithmes,
+    *   Les outliers influencent les décisions,
+    *   Les valeurs manquantes empêchent certains algorithmes de s’exécuter. 
+### La fuite des données
+Le modèle final devra toujours éviter :
+    *   Calcul de moyennes sur l’ensemble du dataset,
+    *   Transformation avant séparation Train/Test.
+Ici, l’objectif étant l’EDA, la priorité est l’analyse, pas la performance.
 
 ---
 
-# 4. RÉSULTATS DE L'ANALYSE EXPLORATOIRE (EDA)
+# 4. Justification des choix
+### Visualisation
+Les histogrammes et boxplots permettent de détecter :
+    *   Asymétries, 
+    *   Valeurs aberrantes (outliers),
+    *   Groupes de population. 
+
+### Corrélation
+La heatmap identifie les redondances et relations significatives.
+
+### Feature Engineering
+Objectif :
+    *   Améliorer l’interprétabilité, 
+    *   Créer des variables explicatives plus pertinentes.
+---
+
+# 5. RÉSULTATS DE L'ANALYSE EXPLORATOIRE (EDA)
 
 ---
 
-## 4.1 Aperçu des données
+## 5.1 Aperçu des données
    age           job  marital  education default  balance housing loan  \
 0   58    management  married   tertiary      no     2143     yes   no   
 1   44    technician   single  secondary      no       29     yes   no   
@@ -158,7 +154,7 @@ memory usage: 5.9+ MB
 None
 
 
-## 4.2 Statistiques descriptives
+## 5.2 Statistiques descriptives
               age        balance   day_of_week      duration      campaign  \
 count  45211.000000   45211.000000  45211.000000  45211.000000  45211.000000   
 mean      40.936210    1362.272058     15.806419    258.163080      2.763841   
@@ -184,7 +180,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 ---
 
-# 4.3 Histogrammes – Distributions
+# 5.3 Histogrammes – Distributions
 
 ### Age
 ![Distrtibution de Age](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Distribution%20de%20Age.png?raw=true)
@@ -244,7 +240,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 ---
 
-# 4.4 BOXPLOTS 
+# 5.4 BOXPLOTS 
 
 ### Age
 ![Boxplot de age](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Boxplot%20de%20age.png?raw=true)
@@ -301,7 +297,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 - Une boîte large indique une forte dispersion.
 - Une asymétrie de la boîte suggère une distribution biaisée.
 
-# 4.5 HEATMAP – Corrélations
+# 5.5 HEATMAP – Corrélations
 ![Matrice de corrélation](https://github.com/elamraouiabir6963encg-rgb/Projet-Dataset-Machine-learning/blob/main/Image/Matrice%20de%20corr%C3%A9lation.png?raw=true)
 
 📌 Interprétation globale des corrélations :
@@ -341,7 +337,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 ---
 
-# 5. INTERPRÉTATION GÉNÉRALE
+# 6. INTERPRÉTATION GÉNÉRALE
 
 | Point               | Conclusion             |
 | ------------------- | ---------------------- |
@@ -353,7 +349,7 @@ Forte présence de valeurs extrêmes → besoin de prudence en modélisation.
 
 ---
 
-# 6. CONCLUSION
+# 7. CONCLUSION
 
 ---
 
