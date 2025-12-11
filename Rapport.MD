@@ -89,21 +89,16 @@ Le modèle final devra toujours éviter :
 *   Transformation avant séparation Train/Test.
 Ici, l’objectif étant l’EDA, la priorité est l’analyse, pas la performance.
 ---
-
 # 4. Justification des choix
-### Visualisation
-Les histogrammes et boxplots permettent de détecter :
-    *   Asymétries, 
-    *   Valeurs aberrantes (outliers),
-    *   Groupes de population. 
+*   **Visualisation :** 
+    *   Asymétries
+    *   Valeurs aberrantes (outliers)
+    *   Groupes de population
+*   **Corrélation :** La heatmap identifie les redondances et relations significatives.
+*   **Feature Engineering :** Objectifs.
+    *   Améliorer l’interprétabilité
+    *   Créer des variables explicatives plus pertinentes
 
-### Corrélation
-La heatmap identifie les redondances et relations significatives.
-
-### Feature Engineering
-Objectif :
-    *   Améliorer l’interprétabilité, 
-    *   Créer des variables explicatives plus pertinentes.
 ---
 
 # 5. RÉSULTATS DE L'ANALYSE EXPLORATOIRE (EDA)
