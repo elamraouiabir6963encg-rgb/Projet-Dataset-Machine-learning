@@ -85,10 +85,9 @@ Ces problèmes perturbent les modèles de Machine Learning car :
     *   Les valeurs manquantes empêchent certains algorithmes de s’exécuter. 
 ### La fuite des données
 Le modèle final devra toujours éviter :
-    *   Calcul de moyennes sur l’ensemble du dataset,
-    *   Transformation avant séparation Train/Test.
+*   Calcul de moyennes sur l’ensemble du dataset,
+*   Transformation avant séparation Train/Test.
 Ici, l’objectif étant l’EDA, la priorité est l’analyse, pas la performance.
-
 ---
 
 # 4. Justification des choix
