@@ -1,4 +1,5 @@
 # EL Amraoui Abir ENCG SETTAT Finance G2
+# Apogé: 24010353
 ![Abir](https://github.com/user-attachments/assets/19b86bed-ac87-4f8e-938c-862cf3722380)
 
 # 🏦 Analyse Exploratoire et Modélisation Prédictive  
